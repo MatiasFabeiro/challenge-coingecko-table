@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Table, GetProp, TableProps, Select, Space } from 'antd'
-import type { SorterResult } from 'antd/es/table/interface';
 import ComponentCodeEditor from './ComponentCodeEditor';
 
 const App: React.FC = () => {
@@ -63,7 +62,6 @@ type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>
 
 interface TableParams {
   pagination?: TablePaginationConfig;
-  sortOrder?: SorterResult<string>['order'];
 }
 
 const columns: Columns[] = [
@@ -74,7 +72,7 @@ const columns: Columns[] = [
     render: (text, coin) => (
       <div className="flex items-center">
         <img src={coin?.image} alt={`${text} icon`} className="w-6 h-6 mr-2" />
-        <span>{text}</span>
+        <p> {text} </p>
       </div>
     ),
   },
@@ -82,6 +80,12 @@ const columns: Columns[] = [
     title: 'Current Price',
     dataIndex: 'current_price',
     key: 'current_price',
+    render: (text) => (
+      <div className='flex items-center'>
+        <p> {text} </p>
+        <p className='pl-2'> {currency} </p>
+      </div>
+    )
   },
   {
     title: 'Circulating Supply',
