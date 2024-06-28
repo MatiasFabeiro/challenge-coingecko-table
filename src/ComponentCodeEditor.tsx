@@ -9,7 +9,7 @@ const ComponentCodeEditor = () => {
   useEffect(() => {
     const fetchCode = async () => {
       try {
-        const response = await fetch(AppSourceCode); // Ruta relativa al archivo
+        const response = await fetch(AppSourceCode);
         const fetchedCode = await response.text();
         setCode(fetchedCode);
       } catch (error) {
@@ -18,7 +18,7 @@ const ComponentCodeEditor = () => {
     };
 
     fetchCode();
-  }, []); // Se ejecuta solo una vez al montar el componente
+  }, []);
 
   useEffect(() => {
     if (editorRef.current && code) {
@@ -36,9 +36,9 @@ const ComponentCodeEditor = () => {
         view.destroy();
       };
     }
-  }, [code]); // Se ejecuta cuando el código cambia
+  }, [code]);
 
-  return <div ref={editorRef} />;
+  return <div ref={editorRef} className="border border-gray-300 rounded-lg shadow-md"/>;
 };
 
 export default ComponentCodeEditor;

@@ -5,18 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --outDir=build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@codemirror/basic-setup": "^0.20.0",
-    "@codemirror/lang-javascript": "^6.2.2",
-    "@codemirror/theme-one-dark": "^6.2.2",
+    "@codemirror/state": "6.4.1",
+    "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.28.2",
     "antd": "^5.18.3",
     "codemirror": "^6.2.2",
+    "firebase": "^10.12.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

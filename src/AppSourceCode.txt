@@ -16,11 +16,6 @@ const [tableParams, setTableParams] = useState<TableParams>({
     total: 10000,
   },
 });
-// const [error, setError] = useState<string | null>(null);
-
-// console.log("coinsData", coinsData)
-// console.log("loading", loading)
-// console.log("error", error)
 
 interface Coin {
     id: string,
@@ -64,14 +59,11 @@ interface Columns {
   render?: (text: string, coin: Coin) => React.ReactNode;
 }
 
-// type ColumnsType<T> = TableProps<T>['columns'];
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
 
 interface TableParams {
   pagination?: TablePaginationConfig;
   sortOrder?: SorterResult<string>['order'];
-  // sortField?: SorterResult<string>['field'];
-  // filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
 }
 
 const columns: Columns[] = [
@@ -98,12 +90,9 @@ const columns: Columns[] = [
   },
 ];
 
-const handleTableChange: TableProps['onChange'] = (pagination) => { // filters, sorter
+const handleTableChange: TableProps['onChange'] = (pagination) => {
   setTableParams({
     pagination,
-    // filters,
-    // sortOrder: sorter ? sorter.order : undefined,
-    // sortField: Array.isArray(sorter) ? undefined : sorter.field,
   });
 
   if (pagination.pageSize !== tableParams.pagination?.pageSize) {
@@ -134,11 +123,6 @@ const fetchCoins = async () => {
     
     setCoinsData(data)
     setLoading(false);
-
-    // console.log("currentPage",tableParams.pagination?.current)
-    // console.log("pageSize",tableParams.pagination?.pageSize)
-    console.log("currency",currency)
-    console.log("order",order)
     
   }catch (error) {
     setLoading(true);
@@ -158,7 +142,7 @@ useEffect(() => {
   return (
     <>
       <div className="min-h-screen w-full flex flex-col justify-center items-center">
-        <h1 className="text-white text-[40px] pt-12"> Coins & Markets </h1>
+        <h1 className="text-black text-[40px] pt-12"> Coins & Markets </h1>
 
         <Space wrap className='pt-4'>
           <Select
@@ -183,8 +167,7 @@ useEffect(() => {
         </Space>
         
         <div className='w-11/12 py-8'>
-          <Table 
-            // dataSource={coinsData}
+          <Table
             dataSource={coinsData.map(coin => ({ ...coin, key: coin.id }))} 
             columns={columns} 
             pagination={tableParams.pagination}
@@ -193,10 +176,9 @@ useEffect(() => {
           />
         </div>
 
-        <p className='text-white text-[36px] pt-4'> App source code </p>
-        <p className='text-white text-[16px] py-4'> (Sorry I wasn't able to make it work with code mirror's javascript styling) </p>
+        <p className='text-black text-[36px] py-4'> App source code </p>
 
-        <div className='w-11/12'>
+        <div className='w-11/12 text-black pb-4'>
           <ComponentCodeEditor/>
         </div>
       </div>
